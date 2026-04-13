@@ -1,0 +1,323 @@
+/* ── 디자인 토큰 ── */
+:root {
+  --color-bg: #f0f2f5;
+  --color-card: #ffffff;
+  --color-primary: #6366f1;
+  --color-primary-hover: #4f46e5;
+  --color-danger: #ef4444;
+  --color-danger-hover: #dc2626;
+  --color-text: #1f2937;
+  --color-muted: #9ca3af;
+  --color-border: #e5e7eb;
+  --color-completed-text: #d1d5db;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --transition: 150ms ease;
+}
+
+/* ── 리셋 & 베이스 ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100dvh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ── 레이아웃 ── */
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100dvh;
+  padding: 48px 16px 80px;
+}
+
+.app-card {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  width: 100%;
+  max-width: 520px;
+  overflow: hidden;
+}
+
+/* ── 헤더 ── */
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  padding: 28px 24px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ── 입력 폼 ── */
+.todo-input-form {
+  display: flex;
+  gap: 8px;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.todo-input {
+  flex: 1;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.todo-input::placeholder {
+  color: var(--color-muted);
+}
+
+.todo-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+.todo-input:disabled {
+  opacity: 0.5;
+}
+
+.todo-input-btn {
+  height: 40px;
+  padding: 0 18px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+
+.todo-input-btn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.todo-input-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.todo-input-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── 필터 바 ── */
+.todo-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+}
+
+.todo-filter-count {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+  margin-right: auto;
+}
+
+.todo-filter-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.todo-filter-btn {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 99px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: background var(--transition), color var(--transition);
+}
+
+.todo-filter-btn:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.todo-filter-btn.is-active {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.todo-clear-btn {
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 99px;
+  font-size: 0.8125rem;
+  color: var(--color-danger);
+  transition: background var(--transition);
+}
+
+.todo-clear-btn:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* ── 할 일 목록 ── */
+.todo-list {
+  padding: 8px 0;
+}
+
+/* ── 할 일 아이템 ── */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition);
+}
+
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+.todo-item:hover {
+  background: #fafafa;
+}
+
+.todo-item-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.todo-item-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  position: relative;
+}
+
+.todo-item-checkbox:checked {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.todo-item-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 6px;
+  height: 10px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.todo-item-checkbox:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.todo-item-text {
+  font-size: 0.9375rem;
+  word-break: break-word;
+  transition: color var(--transition), text-decoration var(--transition);
+}
+
+.todo-item.is-completed .todo-item-text {
+  color: var(--color-completed-text);
+  text-decoration: line-through;
+}
+
+.todo-item-delete {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition), background var(--transition), color var(--transition);
+  flex-shrink: 0;
+}
+
+.todo-item:hover .todo-item-delete {
+  opacity: 1;
+}
+
+.todo-item-delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+}
+
+/* ── 빈 상태 ── */
+.todo-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 24px;
+  color: var(--color-muted);
+}
+
+.todo-empty-icon {
+  font-size: 2rem;
+  opacity: 0.3;
+}
+
+.todo-empty p {
+  font-size: 0.9rem;
+}
+
+/* ── 반응형 ── */
+@media (max-width: 480px) {
+  .app {
+    padding: 16px 8px 40px;
+  }
+
+  .app-card {
+    border-radius: var(--radius-md);
+  }
+
+  .todo-filter {
+    padding: 10px 16px;
+  }
+}
